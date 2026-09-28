@@ -15,6 +15,7 @@ import { ArchitectureSpecView } from './components/ArchitectureSpecView';
 import { DocumentDetailModal } from './components/DocumentDetailModal';
 import { EditMetadataModal } from './components/EditMetadataModal';
 import { RoleSwitcherModal } from './components/RoleSwitcherModal';
+import { SupabaseModal } from './components/SupabaseModal';
 
 import { DocumentItem, User, UserRole, AuditLogItem } from './types';
 import { SYSTEM_USERS } from './services/mockData';
@@ -26,6 +27,7 @@ export default function App() {
   // Current user & RBAC
   const [currentUser, setCurrentUser] = useState<User>(SYSTEM_USERS.ADMIN);
   const [isRoleModalOpen, setIsRoleModalOpen] = useState(false);
+  const [isSupabaseModalOpen, setIsSupabaseModalOpen] = useState(false);
 
   // Navigation
   const [currentTab, setCurrentTab] = useState<string>('dashboard');
@@ -197,6 +199,7 @@ export default function App() {
         onSelectTab={setCurrentTab}
         onQuickSearch={handleQuickSearch}
         quickSearchText={searchQuery}
+        onOpenSupabaseModal={() => setIsSupabaseModalOpen(true)}
       />
 
       {/* Main Workspace Layout */}
@@ -305,6 +308,13 @@ export default function App() {
         onClose={() => setIsRoleModalOpen(false)}
         currentUser={currentUser}
         onSelectRole={handleRoleSelect}
+      />
+
+      {/* Supabase Connection Modal */}
+      <SupabaseModal
+        isOpen={isSupabaseModalOpen}
+        onClose={() => setIsSupabaseModalOpen(false)}
+        onSuccess={(url) => showToast(`Supabase connected to ${url}`)}
       />
 
       {/* Toast Notification */}

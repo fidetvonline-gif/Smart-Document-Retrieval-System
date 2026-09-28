@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Shield, ChevronDown, Files, BookOpen } from 'lucide-react';
+import { Search, Shield, ChevronDown, Files, BookOpen, Database } from 'lucide-react';
 import { User } from '../types';
 
 interface NavbarProps {
@@ -8,6 +8,7 @@ interface NavbarProps {
   onSelectTab: (tab: string) => void;
   onQuickSearch: (query: string) => void;
   quickSearchText: string;
+  onOpenSupabaseModal: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -15,7 +16,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenRoleModal,
   onSelectTab,
   onQuickSearch,
-  quickSearchText
+  quickSearchText,
+  onOpenSupabaseModal
 }) => {
   return (
     <header className="sticky top-0 z-30 h-14 border-b border-slate-200 bg-white px-4 sm:px-6 flex items-center justify-between">
@@ -61,7 +63,15 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Zone 3: Navigation Actions & Account Profile */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2.5">
+        <button
+          onClick={onOpenSupabaseModal}
+          className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-md transition-colors"
+        >
+          <Database size={13} className="text-emerald-600" />
+          <span className="hidden sm:inline">Connect Supabase</span>
+        </button>
+
         <button
           onClick={() => onSelectTab('spec')}
           className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors"
@@ -95,3 +105,4 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
+
