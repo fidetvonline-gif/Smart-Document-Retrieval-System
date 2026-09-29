@@ -14,7 +14,7 @@ import { AuditTrailView } from './components/AuditTrailView';
 import { ArchitectureSpecView } from './components/ArchitectureSpecView';
 import { DocumentDetailModal } from './components/DocumentDetailModal';
 import { EditMetadataModal } from './components/EditMetadataModal';
-import { RoleSwitcherModal } from './components/RoleSwitcherModal';
+import { LoginModal } from './components/LoginModal';
 import { SupabaseModal } from './components/SupabaseModal';
 
 import { DocumentItem, User, UserRole, AuditLogItem } from './types';
@@ -85,19 +85,18 @@ export default function App() {
   }, [documents]);
 
   // Handlers
-  const handleRoleSelect = (newRole: UserRole) => {
-    const newUser = SYSTEM_USERS[newRole];
-    setCurrentUser(newUser);
+  const handleLoginSuccess = (user: User) => {
+    setCurrentUser(user);
 
     AuditService.log({
-      actor: { id: newUser.id, name: newUser.name, role: newRole },
+      actor: { id: user.id, name: user.name, role: user.role },
       action: 'ROLE_SWITCHED',
-      resource: `Role: ${newRole}`,
-      resourceId: `role-${newRole.toLowerCase()}`,
-      details: `Switched active role to ${newUser.name} (${newUser.title})`
+      resource: `User Account: ${user.name}`,
+      resourceId: user.id,
+      details: `Logged in as ${user.name} (${user.title})`
     });
     setAuditLogs(AuditService.getLogs());
-    showToast(`Role switched to ${newRole} (${newUser.name})`, 'info');
+    showToast(`Welcome back, ${user.name}!`);
   };
 
   const handleOpenDocument = (doc: DocumentItem) => {
@@ -302,12 +301,12 @@ export default function App() {
         />
       )}
 
-      {/* Role Switcher Modal */}
-      <RoleSwitcherModal
+      {/* Login Modal */}
+      <LoginModal
         isOpen={isRoleModalOpen}
         onClose={() => setIsRoleModalOpen(false)}
         currentUser={currentUser}
-        onSelectRole={handleRoleSelect}
+        onLoginSuccess={handleLoginSuccess}
       />
 
       {/* Supabase Connection Modal */}

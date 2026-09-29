@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search, Shield, ChevronDown, Files, BookOpen, Database } from 'lucide-react';
 import { User } from '../types';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface NavbarProps {
   currentUser: User;
@@ -32,10 +33,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <div>
             <span className="font-semibold text-sm text-slate-900 tracking-tight block leading-tight">
-              Document Retrieval System
+              Fed. Poly. Ukana - Applied Science
             </span>
             <span className="text-[11px] text-slate-500 font-normal">
-              Enterprise Storage & Indexing
+              Admin Office Document System
             </span>
           </div>
         </button>
@@ -63,13 +64,15 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Zone 3: Navigation Actions & Account Profile */}
-      <div className="flex items-center gap-2.5">
+      <div className="flex items-center gap-2">
+        <PWAInstallButton />
+
         <button
           onClick={onOpenSupabaseModal}
           className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-md transition-colors"
         >
           <Database size={13} className="text-emerald-600" />
-          <span className="hidden sm:inline">Connect Supabase</span>
+          <span className="hidden sm:inline">Supabase</span>
         </button>
 
         <button

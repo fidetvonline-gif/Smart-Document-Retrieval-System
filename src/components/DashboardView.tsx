@@ -50,14 +50,34 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
   return (
     <div className="space-y-6">
+      {/* Institutional Banner */}
+      <div className="p-4 rounded-lg bg-slate-900 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+        <div className="space-y-1">
+          <h2 className="text-base font-semibold tracking-tight">
+            School of Applied Science Admin Office
+          </h2>
+          <p className="text-xs text-slate-300">
+            Official Document Retrieval & Management System &bull; Admin Officer: <span className="text-white font-medium">Udo-Odu Inibehe David</span>
+          </p>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={() => onSelectTab('search')}
+            className="px-3 py-1.5 text-xs font-medium rounded-md bg-white text-slate-900 hover:bg-slate-100 transition-colors shadow-2xs"
+          >
+            Explore Records
+          </button>
+        </div>
+      </div>
+
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
           <h1 className="text-xl font-semibold text-slate-900 tracking-tight">
-            System Overview
+            System Overview & Metrics
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
-            Enterprise document index, OCR extraction pipeline, and search performance metrics.
+            Admin document index, OCR extraction pipeline, and archival search performance.
           </p>
         </div>
 

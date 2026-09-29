@@ -1,6 +1,6 @@
 {
-  "name": "Smart Document Retrieval System",
-  "description": "Enterprise document retrieval platform featuring multi-format OCR pipelines, TF-IDF hybrid search, automated classification, and role-based access control.",
+  "name": "Federal Polytechnic Ukana - School of Applied Science Document System",
+  "description": "Enterprise document retrieval platform for the School of Applied Science Admin Office, Federal Polytechnic Ukana, Akwa Ibom State. Managed by Udo-Odu Inibehe David.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

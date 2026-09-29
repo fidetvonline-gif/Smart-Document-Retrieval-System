@@ -12,7 +12,9 @@ export class ApiService {
     try {
       const stored = localStorage.getItem(DOCS_STORAGE_KEY);
       if (stored) {
-        this.localDocs = JSON.parse(stored);
+        const parsed: DocumentItem[] = JSON.parse(stored);
+        this.localDocs = parsed.filter(d => !d.id.startsWith('doc-001') && !d.id.startsWith('doc-002') && !d.id.startsWith('doc-003') && !d.id.startsWith('doc-004') && !d.id.startsWith('doc-005') && !d.id.startsWith('doc-006'));
+        localStorage.setItem(DOCS_STORAGE_KEY, JSON.stringify(this.localDocs));
       } else {
         this.localDocs = [...INITIAL_DOCUMENTS];
         localStorage.setItem(DOCS_STORAGE_KEY, JSON.stringify(this.localDocs));
